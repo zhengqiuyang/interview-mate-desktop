@@ -1,0 +1,24 @@
+{
+  "name": "interview-mate-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "InterviewMate 桌面版 —— 把 interview-mate 本地服务装进一个真正的桌面应用（Electron 壳 + 子进程服务）",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke",
+    "test": "node --test",
+    "smoke:server": "node scripts/smoke.js",
+    "dist": "electron-builder --config electron-builder.yml"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  },
+  "license": "MIT",
+  "allowScripts": {
+    "electron@33.4.11": true
+  }
+}

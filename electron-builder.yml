@@ -1,0 +1,22 @@
+appId: com.zhengqiuyang.interviewmate.desktop
+productName: InterviewMate
+directories:
+  output: dist
+files:
+  - main.js
+  - server-manager.js
+  - package.json
+  - interview-mate/**/*
+extraMetadata:
+  main: main.js
+win:
+  target: nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+mac:
+  target: dmg
+  category: public.app-category.education
+linux:
+  target: AppImage
+  category: Education

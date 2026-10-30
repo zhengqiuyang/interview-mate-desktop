@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: ["20", "22"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm install
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: "1"  # CI 不跑 Electron 本体，跳过 ~100MB 二进制
+      - name: Unit & integration tests
+        run: npm test
+      - name: Server smoke (real subprocess)
+        run: npm run smoke:server
